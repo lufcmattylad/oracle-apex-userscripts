@@ -24,7 +24,7 @@ This repository contains the following userscripts for Oracle APEX:
 
 | Script Name | Version   | Description |
 |-------------|-----------|-------------|
-| [Auto-hide Header](scripts/oracle-apex-auto-hide-header/readme.md) | 24.2.1 | Collapses the Oracle APEX header and expands it on hover, with user-configurable settings. Provides more screen for small displays.  |
+| [Auto-hide Header](scripts/oracle-apex-auto-hide-header/readme.md) | 24.2.2 | Collapses the Oracle APEX header and expands it on hover, with user-configurable settings. Provides more screen for small displays.  |
 | [Monaco Theme](scripts/oracle-apex-monaco-theme/readme.md) | 24.2.1 | Applies custom themes (e.g., Dracula) to the Monaco Editor in Oracle APEX. |
 | [Page Designer Shortcuts](scripts/oracle-apex-page-designer-shortcuts/readme.md) | 24.2.5 | Adds global keyboard shortcuts for common actions in Oracle APEX Page Designer, such as saving and running pages. |
 | [Session Auto-Extender](scripts/oracle-apex-session-auto-extender/readme.md) | 24.2.2 | Automatically extends your APEX session to prevent idle timeouts, with customizable intervals. |
@@ -103,4 +103,4 @@ You can enable, disable, or remove scripts at any time from the Tampermonkey das
 
 ## License
 
-See [LICENSE](../LICENSE) for license details.
+See [LICENSE](LICENSE) for license details.

@@ -1,6 +1,6 @@
 # Oracle APEX Auto-hide Header
 
-**Version:** 24.2.1  
+**Version:** 24.2.2 
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
 **Last Updated:** August 2025
 

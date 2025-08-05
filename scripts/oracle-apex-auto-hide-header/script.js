@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Oracle APEX Auto-hide Header
 // @namespace    https://github.com/lufcmattylad
-// @version      24.2.1
+// @version      24.2.2
 // @description  Collapse only the .a-Header inside <header> and expand on hover, with user-configurable settings and instant first collapse
 // @author       Matt Mulvaney – @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -150,7 +150,7 @@ div#pdNotification{padding-top:40px;}
         document.addEventListener('mousemove', throttledMove);
 
         header.style.zIndex = '10000';
-        (window.jQuery || window.$)?.(document).trigger('apexwindowresized');
+        $(document).trigger('apexwindowresized');
 
         debugLog('Successfully initialised');
     }

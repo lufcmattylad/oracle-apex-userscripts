@@ -29,6 +29,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Page Designer Shortcuts](scripts/oracle-apex-page-designer-shortcuts/readme.md) | 24.2.5 | Adds global keyboard shortcuts for common actions in Oracle APEX Page Designer, such as saving and running pages. |
 | [Session Auto-Extender](scripts/oracle-apex-session-auto-extender/readme.md) | 24.2.2 | Automatically extends your APEX session to prevent idle timeouts, with customizable intervals. |
 | [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 24.2.2 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. |
+| [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 24.2.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
 
 ---
 
@@ -48,6 +49,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### Toggle Comment Out
 ![Preview](scripts/oracle-apex-toggle-comment-out/img/preview.gif)
+
+### Page Designer Undo/Redo Counters
+![Preview](scripts/oracle-apex-page-designer-undo-redo-counters/img/preview.gif)
 
 ---
 
@@ -72,6 +76,10 @@ This repository contains the following userscripts for Oracle APEX:
 ### 5. Toggle Comment Out
 - **Location:** [`scripts/oracle-apex-toggle-comment-out/readme.md`](scripts/oracle-apex-toggle-comment-out/readme.md)
 - **Description:** Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer.
+
+### 6. Page Designer Undo/Redo Counters
+- **Location:** [`scripts/oracle-apex-page-designer-undo-redo-counters/readme.md`](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md)
+- **Description:** Shows live undo and redo counts beside the Page Designer toolbar Undo/Redo buttons. Uses native `a-Button-badge` styling and theme utility classes; configurable to hide zero counts.
 
 ---
 

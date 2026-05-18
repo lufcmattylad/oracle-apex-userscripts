@@ -1,8 +1,8 @@
 # Oracle APEX Page Designer Toggle Comment Out
 
-**Version:** 24.2.2  
+**Version:** 26.1.1  
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
-**Last Updated:** August 2025
+**Last Updated:** May 2026
 
 > **Experimental Use Only**  
 > This script is provided for experimental use only. Use at your own risk.  
@@ -19,3 +19,7 @@ This userscript adds a keyboard shortcut (Ctrl+Shift+/) to toggle the "Comment O
 - Works with multiple selections in the Page Designer tree.
 - Integrates with APEX's undo/redo system.
 - Only active in the Page Designer (App 4000, Page 4500).
+
+**APEX Version Compatibility:**
+- Supports 24.2 & APEX 26.1
+- Both versions are detected automatically at runtime; no configuration needed.

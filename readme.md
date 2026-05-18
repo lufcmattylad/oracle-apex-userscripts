@@ -28,7 +28,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Monaco Theme](scripts/oracle-apex-monaco-theme/readme.md) | 24.2.1 | Applies custom themes (e.g., Dracula) to the Monaco Editor in Oracle APEX. |
 | [Page Designer Shortcuts](scripts/oracle-apex-page-designer-shortcuts/readme.md) | 24.2.5 | Adds global keyboard shortcuts for common actions in Oracle APEX Page Designer, such as saving and running pages. |
 | [Session Auto-Extender](scripts/oracle-apex-session-auto-extender/readme.md) | 24.2.2 | Automatically extends your APEX session to prevent idle timeouts, with customizable intervals. |
-| [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 24.2.2 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. |
+| [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 26.1.1 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. Compatible with APEX 24.2 and 26.1+. |
 | [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 24.2.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
 
 ---

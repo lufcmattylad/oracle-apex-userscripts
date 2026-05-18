@@ -2,7 +2,7 @@
 // @name         Oracle APEX Page Designer Toggle Comment Out
 // @run-at       document-idle
 // @namespace    https://github.com/lufcmattylad
-// @version      24.2.2
+// @version      26.1.1
 // @description  Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in Oracle APEX Page Designer.
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -56,8 +56,8 @@
 
             const currentCount = apex.actions.listShortcuts().length;
 
-            if (currentCount === lastCount && currentCount > 30) {
-                // Count has stabilized and reached expected number
+            if (currentCount === lastCount && currentCount > 0) {
+                // Count has stabilized (APEX 26.1 has ~24 shortcuts, older versions had 30+)
                 callback();
             } else if (attempts < maxAttempts) {
                 lastCount = currentCount;
@@ -98,7 +98,7 @@
                  * 4. Toggles their build option between normal and "Comment Out".
                  */
                 action: function xyzToggleCommentOut() {
-                    // CSS selectors for all possible Page Designer trees
+                    // CSS selectors for all possible Page Designer tree containers
                     const treeSelectors = [
                         '#PDrenderingTree:visible',
                         '#PDdynamicActionTree:visible',
@@ -106,35 +106,45 @@
                         '#PDsharedCompTree:visible'
                     ];
 
-                    // Find the currently visible tree using a combined selector
-                    const pTree$ = $(treeSelectors.join(', '));
+                    // Use apex.jQuery (not the global $) so that jQuery widget data lookups
+                    // hit the same store where APEX initialised the treeView widget.
+                    const jq = apex.jQuery;
+
+                    // #PDrenderingTree etc. are themselves the .a-TreeView widget elements.
+                    const pTree$ = jq(treeSelectors.join(', '));
                     if (!pTree$.length) return; // Exit if no tree is visible
 
-                    // Get selected nodes in the tree
-                    const selectedNodes = pTree$.treeView("getSelectedNodes");
+                    // APEX 26.1+ stores the widget instance under 'apexDesignerTree'.
+                    // Older versions (24.2) used the standard jQuery UI key 'apex-treeView'
+                    // accessed via the .treeView() plugin. Try the new key first, fall back
+                    // to the old plugin call so both versions are supported.
+                    const treeWidget = pTree$.data('apexDesignerTree');
+                    const selectedNodes = treeWidget
+                        ? treeWidget.getSelectedNodes()         // APEX 26.1+
+                        : pTree$.treeView("getSelectedNodes");  // APEX 24.2
                     if (!selectedNodes?.length) return; // Exit if nothing is selected
 
                     /**
                      * Helper to retrieve the component object for a given tree node.
-                     * Handles both jQuery and plain node objects.
+                     * Supports both APEX 26.1+ flat node structure (node.typeId) and
+                     * older nested structure (node.data.typeId).
                      * @param {Object} node - The selected tree node.
-                     * @param {jQuery} tree$ - The jQuery tree object.
                      * @returns {Object|null} The component object or null if not found.
                      */
-                    const getComponent = (node, tree$) => {
+                    const getComponent = (node) => {
                         try {
-                            const nodeData = node instanceof jQuery
-                                ? tree$.treeView("getNodes", node)[0]
-                                : node;
+                            // Support both APEX 26.1+ (flat: node.typeId) and older (nested: node.data.typeId)
+                            const typeId = node?.typeId ?? node?.data?.typeId;
+                            const componentId = node?.componentId ?? node?.data?.componentId;
 
-                            if (!nodeData?.data?.typeId || !nodeData?.data?.componentId) {
+                            if (!typeId || !componentId) {
                                 return null;
                             }
 
                             // Retrieve component(s) by type and ID
                             const components = window.pe?.getComponents(
-                                nodeData.data.typeId,
-                                { id: nodeData.data.componentId }
+                                typeId,
+                                { id: componentId }
                             );
 
                             // Return the component if exactly one is found
@@ -201,7 +211,7 @@
 
                     // Collect all valid component objects from selected nodes
                     const components = selectedNodes
-                        .map(node => getComponent(node, pTree$))
+                        .map(node => getComponent(node))
                         .filter(Boolean);
 
                     toggleBuildOption(components);

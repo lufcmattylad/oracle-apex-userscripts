@@ -30,6 +30,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Session Auto-Extender](scripts/oracle-apex-session-auto-extender/readme.md) | 24.2.2 | Automatically extends your APEX session to prevent idle timeouts, with customizable intervals. |
 | [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 26.1.1 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. Compatible with APEX 24.2 and 26.1+. |
 | [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 24.2.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
+| [No Border Attributes](scripts/oracle-apex-no-border-attributes/readme.md) | 26.1.0 | Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+. |
 
 ---
 
@@ -52,6 +53,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### Page Designer Undo/Redo Counters
 ![Preview](scripts/oracle-apex-page-designer-undo-redo-counters/img/preview.gif)
+
+### No Border Attributes
+![Preview](scripts/oracle-apex-no-border-attributes/img/preview.png)
 
 ---
 
@@ -80,6 +84,10 @@ This repository contains the following userscripts for Oracle APEX:
 ### 6. Page Designer Undo/Redo Counters
 - **Location:** [`scripts/oracle-apex-page-designer-undo-redo-counters/readme.md`](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md)
 - **Description:** Shows live undo and redo counts beside the Page Designer toolbar Undo/Redo buttons. Uses native `a-Button-badge` styling and theme utility classes; configurable to hide zero counts.
+
+### 7. No Border Attributes
+- **Location:** [`scripts/oracle-apex-no-border-attributes/readme.md`](scripts/oracle-apex-no-border-attributes/readme.md)
+- **Description:** Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+.
 
 ---
 

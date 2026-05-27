@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Oracle APEX Page Designer No Border Attributes
+// @name         Oracle APEX No Border Attributes
 // @run-at       document-idle
 // @namespace    https://github.com/lufcmattylad
-// @version      26.1.0
-// @description  Removes the visible borders added to attributes in APEX 26.1, restoring the borderless look from 24.2
+// @version      26.1.2
+// @description  Removes the visible borders added to attributes in APEX 26.1, restoring the borderless look from 24.2. Works across all APEX internal pages (Page Designer, Link Details, etc.)
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
 // @match        *://*/pls/*
@@ -27,9 +27,7 @@
         if (typeof apex === 'undefined') return false;
 
         const appId = parseInt(apex.env.APP_ID, 10);
-        const pageId = parseInt(apex.env.APP_PAGE_ID, 10);
-
-        if (appId !== 4000 || pageId !== 4500) return false;
+        if (appId < 3000 || appId > 8999) return false;
 
         const version = apex.env.APEX_VERSION || '';
         const major = parseInt(version.split('.')[0], 10);
@@ -85,10 +83,47 @@
             box-shadow: none !important;
         }
 
+        /* Restore left padding on the filter input so the search icon doesn't overlap the placeholder */
+        .a-Property-field--filter {
+            padding-left: 32px !important;
+        }
+
         /* Remove border from textarea variant */
         .a-Property-field--textarea {
             border-style: none !important;
             border-width: 0 !important;
+        }
+
+        /* Standard APEX form items (non-Page-Designer pages, e.g. Link Details) */
+        .apex-item-text,
+        .apex-item-number,
+        .apex-item-textarea,
+        .apex-item-select,
+        .apex-item-autocomplete,
+        .apex-item-datepicker,
+        .apex-item-combobox,
+        .apex-item-popup {
+            border-style: none !important;
+            border-width: 0 !important;
+            border-color: transparent !important;
+            border-radius: 2px !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1) !important;
+        }
+
+        .apex-item-text:focus,
+        .apex-item-number:focus,
+        .apex-item-textarea:focus,
+        .apex-item-select:focus,
+        .apex-item-autocomplete:focus,
+        .apex-item-datepicker:focus,
+        .apex-item-combobox:focus,
+        .apex-item-popup:focus {
+            border-color: transparent !important;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1) !important;
+            outline-color: #377e55 !important;
+            outline-offset: 2px !important;
+            outline-style: dotted !important;
+            outline-width: 2px !important;
         }
 
         /* Remove focus-visible border overrides on error/shadow states */

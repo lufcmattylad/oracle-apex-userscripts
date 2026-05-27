@@ -1,6 +1,6 @@
 # Oracle APEX Page Designer No Border Attributes
 
-**Version:** 26.1.0  
+**Version:** 26.1.2  
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
 **Last Updated:** May 2026
 

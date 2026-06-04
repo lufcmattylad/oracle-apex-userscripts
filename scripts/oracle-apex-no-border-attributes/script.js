@@ -2,7 +2,7 @@
 // @name         Oracle APEX No Border Attributes
 // @run-at       document-idle
 // @namespace    https://github.com/lufcmattylad
-// @version      26.1.2
+// @version      26.1.3
 // @description  Removes the visible borders added to attributes in APEX 26.1, restoring the borderless look from 24.2. Works across all APEX internal pages (Page Designer, Link Details, etc.)
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -70,7 +70,7 @@
         .a-Property-field:focus-visible {
             border-color: transparent !important;
             box-shadow: 0 1px 2px rgba(0,0,0,.1) !important;
-            outline-color: #377e55 !important;
+            outline-color: rgb(14, 114, 149) !important;
             outline-offset: 2px !important;
             outline-style: dotted !important;
             outline-width: 2px !important;
@@ -120,7 +120,7 @@
         .apex-item-popup:focus {
             border-color: transparent !important;
             box-shadow: 0 1px 2px rgba(0,0,0,.1) !important;
-            outline-color: #377e55 !important;
+            outline-color: rgb(14, 114, 149) !important;
             outline-offset: 2px !important;
             outline-style: dotted !important;
             outline-width: 2px !important;

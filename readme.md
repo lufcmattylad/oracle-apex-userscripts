@@ -31,6 +31,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 26.1.1 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. Compatible with APEX 24.2 and 26.1+. |
 | [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 24.2.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
 | [No Border Attributes](scripts/oracle-apex-no-border-attributes/readme.md) | 26.1.2 | Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+. |
+| [Top Level Navigation](scripts/oracle-apex-top-level-navigation/readme.md) | 26.1.1 | Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page. Requires APEX 26.1+. |
 
 ---
 
@@ -56,6 +57,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### No Border Attributes
 ![Preview](scripts/oracle-apex-no-border-attributes/img/preview.png)
+
+### Top Level Navigation
+![Preview](scripts/oracle-apex-top-level-navigation/img/preview.png)
 
 ---
 
@@ -88,6 +92,10 @@ This repository contains the following userscripts for Oracle APEX:
 ### 7. No Border Attributes
 - **Location:** [`scripts/oracle-apex-no-border-attributes/readme.md`](scripts/oracle-apex-no-border-attributes/readme.md)
 - **Description:** Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+.
+
+### 8. Top Level Navigation
+- **Location:** [`scripts/oracle-apex-top-level-navigation/readme.md`](scripts/oracle-apex-top-level-navigation/readme.md)
+- **Description:** Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page, reclaiming horizontal space. Requires APEX 26.1+.
 
 ---
 

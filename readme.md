@@ -32,6 +32,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 24.2.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
 | [No Border Attributes](scripts/oracle-apex-no-border-attributes/readme.md) | 26.1.2 | Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+. |
 | [Top Level Navigation](scripts/oracle-apex-top-level-navigation/readme.md) | 26.1.1 | Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page. Requires APEX 26.1+. |
+| [Builder Click Menus](scripts/oracle-apex-builder-click-menus/readme.md) | 26.1.1 | Converts the hover menus on App Builder and SQL Workshop in the APEX 26.1 builder navigation into click-to-open menus, with the original links kept as the first menu item. Requires APEX 26.1+. |
 
 ---
 
@@ -60,6 +61,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### Top Level Navigation
 ![Preview](scripts/oracle-apex-top-level-navigation/img/preview.png)
+
+### Builder Click Menus
+![Preview](scripts/oracle-apex-builder-click-menus/img/preview.png)
 
 ---
 
@@ -96,6 +100,10 @@ This repository contains the following userscripts for Oracle APEX:
 ### 8. Top Level Navigation
 - **Location:** [`scripts/oracle-apex-top-level-navigation/readme.md`](scripts/oracle-apex-top-level-navigation/readme.md)
 - **Description:** Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page, reclaiming horizontal space. Requires APEX 26.1+.
+
+### 9. Builder Click Menus
+- **Location:** [`scripts/oracle-apex-builder-click-menus/readme.md`](scripts/oracle-apex-builder-click-menus/readme.md)
+- **Description:** Converts the hover menus on App Builder and SQL Workshop in the APEX 26.1 builder navigation into click-to-open menus (like Administration). The original links stay available as the first item of each menu, or via Ctrl+click / middle-click. Requires APEX 26.1+.
 
 ---
 

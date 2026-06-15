@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Oracle APEX Page Designer Undo/Redo Counters
 // @namespace    https://github.com/lufcmattylad
-// @version      24.2.1
+// @version      26.1.1
 // @description  Show live undo/redo counts next to Page Designer toolbar buttons using native a-Button-badge styling
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -24,15 +24,28 @@
 
     /* ===== USER SETTINGS ===== */
     const SETTINGS = {
-        // Universal Theme color utility class applied on top of a-Button-badge:
-        //   'u-info', 'u-warning', 'u-danger', 'u-hot', 'u-success', etc.
-        BADGE_COLOR_CLASS: 'u-color-30',
-
         // true  = show badge even when counter is zero
         // false = hide badge when counter is zero
         SHOW_ZERO: true
     };
     /* ========================= */
+
+    // Use the same CSS variables as a-LinksList-badge (APEX's native badge component)
+    // but keep a-Button-badge sizing so it fits correctly inside the toolbar button.
+    const BADGE_CSS =
+        '.pd-history-badge{' +
+            'background-color:var(--u-overlay-active);' +
+            'color:var(--u-text-secondary);' +
+        '}' +
+        '.pd-history-badge.is-disabled{opacity:.45;}';
+
+    function injectStyle() {
+        if (document.getElementById('pd-history-badge-style')) return;
+        const style = document.createElement('style');
+        style.id = 'pd-history-badge-style';
+        style.textContent = BADGE_CSS;
+        document.head.appendChild(style);
+    }
 
     function isApexEnvironmentValid() {
         return typeof apex !== 'undefined' &&
@@ -45,11 +58,7 @@
 
     function createBadgeElement() {
         const span = document.createElement('span');
-        // Native Page Designer badge styling
         span.classList.add('a-Button-badge', 'pd-history-badge');
-        if (SETTINGS.BADGE_COLOR_CLASS) {
-            span.classList.add(SETTINGS.BADGE_COLOR_CLASS);
-        }
         span.textContent = '0';
         return span;
     }
@@ -176,6 +185,7 @@
         }
 
         try {
+            injectStyle();
             OracleApexPageDesignerUndoRedoCounters();
         } catch (e) {
             // Silent fail for unexpected APEX changes

@@ -1,8 +1,8 @@
 # Oracle APEX Page Designer Undo/Redo Counters
 
-**Version:** 24.2.1
+**Version:** 26.1.1  
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
-**Last Updated:** December 2025
+**Last Updated:** June 2026
 
 > **Experimental Use Only**  
 > This script is provided for experimental use only. Use at your own risk.  
@@ -12,12 +12,11 @@
 
 **[View script.js](script.js)**
 
-This userscript shows live undo and redo counts in the Oracle APEX Page Designer & Workflow Definition. It mirrors the Page Designer's command history and displays small badge counters next to the Undo and Redo buttons using native `a-Button-badge` styling and APEX theme color utilities.
+This userscript shows live undo and redo counts next to the Undo and Redo buttons in the Oracle APEX Page Designer toolbar.
 
 **Features:**
-- Live counts for Undo and Redo operations in Page Designer & Workflow.
-- Uses native Page Designer badge styling and theme utility classes.
-- Option to hide zero counts or always show them via `SHOW_ZERO` setting.
-- Lightweight mirror of `apex.commandHistory` with no server changes.
-- Accessible disabled styling on zero counts.
+- Displays a small counter badge on each button, updated in real time as you make, undo, and redo changes.
+- Uses APEX's native badge size and neutral palette (`var(--u-overlay-active)`) — the same colors used by the Shared Components badge counts. Adapts automatically to light and dark themes.
+- Badges fade when the count is zero; they can be hidden entirely at zero via the `SHOW_ZERO` setting.
+- No server changes — mirrors `apex.commandHistory` locally.
 

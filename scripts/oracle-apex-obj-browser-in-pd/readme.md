@@ -8,6 +8,8 @@
 > This script is provided for experimental use only. Use at your own risk.  
 > Not supported by Oracle or my employer.
 
+![Preview](img/preview.png)
+
 **[View script.js](script.js)**
 
 This userscript adds an **Object Browser** tab to the right of the **Layout** tab in the Oracle APEX 26.1 Page Designer, so you can browse your schema objects without leaving the page you are editing.

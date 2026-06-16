@@ -34,6 +34,7 @@ This repository contains the following userscripts for Oracle APEX:
 | [Top Level Navigation](scripts/oracle-apex-top-level-navigation/readme.md) | 26.1.1 | Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page. Requires APEX 26.1+. |
 | [Builder Click Menus](scripts/oracle-apex-builder-click-menus/readme.md) | 26.1.1 | Converts the hover menus on App Builder and SQL Workshop in the APEX 26.1 builder navigation into click-to-open menus, with the original links kept as the first menu item. Requires APEX 26.1+. |
 | [Object Browser in Page Designer](scripts/oracle-apex-obj-browser-in-pd/readme.md) | 26.1.1 | Adds an "Object Browser" tab to the right of the Layout tab in the APEX 26.1 Page Designer, so you can browse schema objects without leaving the page you are editing. Requires APEX 26.1+. |
+| [Shared Components Menu](scripts/oracle-apex-shared-components-menu/readme.md) | 26.1.1 | Converts the Shared Components toolbar button into a drop-down menu with direct links to every Shared Components section, available from anywhere in the builder. Requires APEX 26.1+. |
 
 ---
 
@@ -68,6 +69,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### Object Browser in Page Designer
 ![Preview](scripts/oracle-apex-obj-browser-in-pd/img/preview.png)
+
+### Shared Components Menu
+![Preview](scripts/oracle-apex-shared-components-menu/img/preview.gif)
 
 ---
 
@@ -112,6 +116,10 @@ This repository contains the following userscripts for Oracle APEX:
 ### 10. Object Browser in Page Designer
 - **Location:** [`scripts/oracle-apex-obj-browser-in-pd/readme.md`](scripts/oracle-apex-obj-browser-in-pd/readme.md)
 - **Description:** Adds an "Object Browser" tab to the right of the Layout tab in the APEX 26.1 Page Designer, so you can browse schema objects without leaving the page you are editing. Requires APEX 26.1+.
+
+### 11. Shared Components Menu
+- **Location:** [`scripts/oracle-apex-shared-components-menu/readme.md`](scripts/oracle-apex-shared-components-menu/readme.md)
+- **Description:** Converts the Shared Components toolbar button in the APEX 26.1 builder into a drop-down menu with direct links to every Shared Components section (Application Logic, Security, Other Components, Navigation and Search, User Interface, Files and Reports, Data Sources, Workflows and Automations, Globalization, Generative AI). Works from Page Designer, the page listing, and all other builder pages. Requires APEX 26.1+.
 
 ---
 

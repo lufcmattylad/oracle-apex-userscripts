@@ -2,7 +2,7 @@
 // @name         Oracle APEX Top Level Navigation
 // @run-at       document-start
 // @namespace    https://github.com/lufcmattylad
-// @version      26.1.1
+// @version      26.1.4
 // @description  Relocates the left-side black navigation menu in the APEX 26.1 builder to a horizontal bar across the top of the page.
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -45,6 +45,27 @@
             grid-template-rows: auto 1fr auto !important;
         }
 
+        /* Optional recolor hooks: set --tln-header-background and/or
+           --tln-header-foreground anywhere above .b-Header to change the
+           bar's background and text/icon colors. Unset, they fall back to
+           the builder's own --u-surface-header and --u-text-on-primary,
+           i.e. the native colors.
+
+           To use, uncomment this block. Alternatively, define the same
+           :root block outside this script - e.g. in a Stylus browser
+           extension style or a separate userscript via GM_addStyle - so
+           your colors survive updates of this script:
+
+           :root {
+               --tln-header-background: #44475A;
+               --tln-header-foreground: #F8F8F2;
+           }
+        */
+        .b-Header {
+            background-color: var(--tln-header-background, var(--u-surface-header)) !important;
+            color: var(--tln-header-foreground, var(--u-text-on-primary)) !important;
+        }
+
         /* Lay the header bar out horizontally; the builder exposes
            --ab-header-direction which also flips .b-Header-navList */
         .b-Header {
@@ -58,14 +79,18 @@
             z-index: 100;
         }
 
-        /* Swap the nav group's horizontal dividers for vertical ones */
+        /* Swap the nav group's horizontal dividers for vertical ones.
+           Only a leading divider: the trailing one would sit stranded next
+           to the search icon now that search lives on the right */
         .b-Header-nav {
             border-block-width: 0 !important;
             border-inline-color: color-mix(in srgb, currentColor 12%, transparent);
             border-inline-style: solid;
-            border-inline-width: .0625rem;
+            border-inline-start-width: .0625rem;
+            border-inline-end-width: 0;
             padding-block: 0 !important;
             padding-inline: .5rem;
+            margin-inline-end: auto !important;
         }
 
         /* Utilities + account: drop the top divider, push to the far right */
@@ -78,7 +103,14 @@
 
         .b-Header-utilities {
             flex-direction: row !important;
+        }
+
+        /* Move the spotlight search to the right, with a divider between it
+           and the utility icons that follow */
+        .b-Header-search {
             margin-inline-start: auto !important;
+            border-inline-end: .0625rem solid color-mix(in srgb, currentColor 12%, transparent);
+            padding-inline-end: .5rem;
         }
 
         /* Buttons no longer need to fill the sidebar width; trim their

@@ -2,7 +2,7 @@
 // @name         Oracle APEX Shared Components Menu
 // @run-at       document-idle
 // @namespace    https://github.com/lufcmattylad
-// @version      26.1.1
+// @version      26.1.2
 // @description  Converts the Shared Components button in the APEX 26.1 builder toolbar into a drop-down menu with direct links to every Shared Components section.
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -35,6 +35,10 @@
 
     const MENU_ID = 'apex-scm-menu';
 
+    // Set to false to restore the old behaviour: a single flat list of
+    // actions separated by disabled heading rows.
+    const USE_SUBMENUS = true;
+
     function buildUrl(path, params) {
         const base = location.origin + '/ords/r/apex/app-builder/' + path;
         return base + '?' + (params ? params + '&' : '') + 'session=' + encodeURIComponent(apex.env.APP_SESSION);
@@ -52,87 +56,133 @@
         return '';
     }
 
-    function buildMenuItems() {
+    function buildMenuGroups() {
         const fid = getEditedFlowId();
         const fidPfx = fid ? 'fb_flow_id=' + fid + '&' : '';
 
         return [
-            { type: 'action', label: 'Open Shared Components', href: buildUrl('shared-components'), icon: 'icon-shared-components' },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Application Logic', disabled: true, icon: 'icon-sc-logic' },
-            { type: 'action', label: 'Application Definition', href: buildUrl('edit-application-definition') },
-            { type: 'action', label: 'Application Items', href: buildUrl('application-items') },
-            { type: 'action', label: 'Application Processes', href: buildUrl('application-processes') },
-            { type: 'action', label: 'Application Computations', href: buildUrl('application-computations') },
-            { type: 'action', label: 'Application Settings', href: buildUrl('application-settings') },
-            { type: 'action', label: 'Build Options', href: buildUrl('build-options') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Security', disabled: true, icon: 'icon-util-security-profiles' },
-            { type: 'action', label: 'Security Attributes', href: buildUrl('edit-security-attributes', fidPfx + (fid ? '509_fb_upd_id=' + fid + '&' : '') + 'clear=509') },
-            { type: 'action', label: 'Authentication Schemes', href: buildUrl('authentication-schemes') },
-            { type: 'action', label: 'Authorization Schemes', href: buildUrl('authorization-schemes') },
-            { type: 'action', label: 'Application Access Control', href: buildUrl('application-access-control', 'clear=RP,2300') },
-            { type: 'action', label: 'Session State Protection', href: buildUrl('session-state-protection') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Other Components', disabled: true, icon: 'icon-util-shared-components' },
-            { type: 'action', label: 'Lists of Values', href: buildUrl('lists-of-values') },
-            { type: 'action', label: 'Plug-ins', href: buildUrl('plug-ins', 'clear=RP') },
-            { type: 'action', label: 'Component Settings', href: buildUrl('component-settings', 'clear=RP') },
-            { type: 'action', label: 'Shortcuts', href: buildUrl('shortcuts') },
-            { type: 'action', label: 'Component Groups', href: buildUrl('component-groups') },
-            { type: 'action', label: 'Data Load Definitions', href: buildUrl('data-load-definitions') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Navigation and Search', disabled: true, icon: 'icon-sc-nav' },
-            { type: 'action', label: 'Lists', href: buildUrl('lists', 'clear=RIR') },
-            { type: 'action', label: 'Navigation Menu', href: buildUrl('lists', 'ir_is_navmenu=1&clear=RIR') },
-            { type: 'action', label: 'Breadcrumbs', href: buildUrl('breadcrumbs') },
-            { type: 'action', label: 'Navigation Bar List', href: buildUrl('lists', 'ir_is_navbar=1&clear=RIR') },
-            { type: 'action', label: 'Search Configurations', href: buildUrl('search-configuration') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'User Interface', disabled: true, icon: 'icon-sc-ui' },
-            { type: 'action', label: 'User Interface Attributes', href: buildUrl('edit-user-interface') },
-            { type: 'action', label: 'Progressive Web App', href: buildUrl('edit-progressive-web-app') },
-            { type: 'action', label: 'Themes', href: buildUrl('themes') },
-            { type: 'action', label: 'Templates', href: buildUrl('templates') },
-            { type: 'action', label: 'Email Templates', href: buildUrl('email-templates') },
-            { type: 'action', label: 'Map Backgrounds', href: buildUrl('map-backgrounds') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Files and Reports', disabled: true, icon: 'icon-sc-files' },
-            { type: 'action', label: 'Static Application Files', href: buildUrl('static-application-files') },
-            { type: 'action', label: 'Static Workspace Files', href: buildUrl('static-workspace-files', 'clear=RP') },
-            { type: 'action', label: 'Report Layouts', href: buildUrl('report-layouts') },
-            { type: 'action', label: 'Report Queries', href: buildUrl('report-queries') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Data Sources', disabled: true, icon: 'icon-util-webservice' },
-            { type: 'action', label: 'REST Data Sources', href: buildUrl('rest-data-sources') },
-            { type: 'action', label: 'JSON Duality Views', href: buildUrl('document-sources', 'p7100_source_type=DUALITY_VIEW&clear=7100') },
-            { type: 'action', label: 'JSON Sources', href: buildUrl('document-sources', 'p7100_source_type=JSON_TABLE&clear=7100') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Workflows and Automations', disabled: true, icon: 'icon-sc-tree' },
-            { type: 'action', label: 'Task Definitions', href: buildUrl('task-definitions') },
-            { type: 'action', label: 'Automations', href: buildUrl('automations') },
-            { type: 'action', label: 'Workflows', href: buildUrl('workflows') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Globalization', disabled: true, icon: 'icon-sc-globalization' },
-            { type: 'action', label: 'Globalization Attributes', href: buildUrl('edit-globalization-attributes', fidPfx + 'clear=506') },
-            { type: 'action', label: 'Text Messages', href: buildUrl('text-messages') },
-            { type: 'action', label: 'Application Translations', href: buildUrl('translate-application') },
-            { type: 'separator' },
-
-            { type: 'action', label: 'Generative AI', disabled: true, icon: 'icon-sc-ai' },
-            { type: 'action', label: 'AI Attributes', href: buildUrl('edit-ai') },
-            { type: 'action', label: 'AI Agents', href: buildUrl('gen-ai-agents') },
-            { type: 'action', label: 'AI Services', href: buildUrl('generative-ai-services') },
+            {
+                heading: 'Application Logic', icon: 'icon-sc-logic',
+                items: [
+                    { type: 'action', label: 'Application Definition', href: buildUrl('edit-application-definition') },
+                    { type: 'action', label: 'Application Items', href: buildUrl('application-items') },
+                    { type: 'action', label: 'Application Processes', href: buildUrl('application-processes') },
+                    { type: 'action', label: 'Application Computations', href: buildUrl('application-computations') },
+                    { type: 'action', label: 'Application Settings', href: buildUrl('application-settings') },
+                    { type: 'action', label: 'Build Options', href: buildUrl('build-options') },
+                ],
+            },
+            {
+                heading: 'Security', icon: 'icon-util-security-profiles',
+                items: [
+                    { type: 'action', label: 'Security Attributes', href: buildUrl('edit-security-attributes', fidPfx + (fid ? '509_fb_upd_id=' + fid + '&' : '') + 'clear=509') },
+                    { type: 'action', label: 'Authentication Schemes', href: buildUrl('authentication-schemes') },
+                    { type: 'action', label: 'Authorization Schemes', href: buildUrl('authorization-schemes') },
+                    { type: 'action', label: 'Application Access Control', href: buildUrl('application-access-control', 'clear=RP,2300') },
+                    { type: 'action', label: 'Session State Protection', href: buildUrl('session-state-protection') },
+                ],
+            },
+            {
+                heading: 'Other Components', icon: 'icon-util-shared-components',
+                items: [
+                    { type: 'action', label: 'Lists of Values', href: buildUrl('lists-of-values') },
+                    { type: 'action', label: 'Plug-ins', href: buildUrl('plug-ins', 'clear=RP') },
+                    { type: 'action', label: 'Component Settings', href: buildUrl('component-settings', 'clear=RP') },
+                    { type: 'action', label: 'Shortcuts', href: buildUrl('shortcuts') },
+                    { type: 'action', label: 'Component Groups', href: buildUrl('component-groups') },
+                    { type: 'action', label: 'Data Load Definitions', href: buildUrl('data-load-definitions') },
+                ],
+            },
+            {
+                heading: 'Navigation and Search', icon: 'icon-sc-nav',
+                items: [
+                    { type: 'action', label: 'Lists', href: buildUrl('lists', 'clear=RIR') },
+                    { type: 'action', label: 'Navigation Menu', href: buildUrl('lists', 'ir_is_navmenu=1&clear=RIR') },
+                    { type: 'action', label: 'Breadcrumbs', href: buildUrl('breadcrumbs') },
+                    { type: 'action', label: 'Navigation Bar List', href: buildUrl('lists', 'ir_is_navbar=1&clear=RIR') },
+                    { type: 'action', label: 'Search Configurations', href: buildUrl('search-configuration') },
+                ],
+            },
+            {
+                heading: 'User Interface', icon: 'icon-sc-ui',
+                items: [
+                    { type: 'action', label: 'User Interface Attributes', href: buildUrl('edit-user-interface') },
+                    { type: 'action', label: 'Progressive Web App', href: buildUrl('edit-progressive-web-app') },
+                    { type: 'action', label: 'Themes', href: buildUrl('themes') },
+                    { type: 'action', label: 'Templates', href: buildUrl('templates') },
+                    { type: 'action', label: 'Email Templates', href: buildUrl('email-templates') },
+                    { type: 'action', label: 'Map Backgrounds', href: buildUrl('map-backgrounds') },
+                ],
+            },
+            {
+                heading: 'Files and Reports', icon: 'icon-sc-files',
+                items: [
+                    { type: 'action', label: 'Static Application Files', href: buildUrl('static-application-files') },
+                    { type: 'action', label: 'Static Workspace Files', href: buildUrl('static-workspace-files', 'clear=RP') },
+                    { type: 'action', label: 'Report Layouts', href: buildUrl('report-layouts') },
+                    { type: 'action', label: 'Report Queries', href: buildUrl('report-queries') },
+                ],
+            },
+            {
+                heading: 'Data Sources', icon: 'icon-util-webservice',
+                items: [
+                    { type: 'action', label: 'REST Data Sources', href: buildUrl('rest-data-sources') },
+                    { type: 'action', label: 'JSON Duality Views', href: buildUrl('document-sources', 'p7100_source_type=DUALITY_VIEW&clear=7100') },
+                    { type: 'action', label: 'JSON Sources', href: buildUrl('document-sources', 'p7100_source_type=JSON_TABLE&clear=7100') },
+                ],
+            },
+            {
+                heading: 'Workflows and Automations', icon: 'icon-sc-tree',
+                items: [
+                    { type: 'action', label: 'Task Definitions', href: buildUrl('task-definitions') },
+                    { type: 'action', label: 'Automations', href: buildUrl('automations') },
+                    { type: 'action', label: 'Workflows', href: buildUrl('workflows') },
+                ],
+            },
+            {
+                heading: 'Globalization', icon: 'icon-sc-globalization',
+                items: [
+                    { type: 'action', label: 'Globalization Attributes', href: buildUrl('edit-globalization-attributes', fidPfx + 'clear=506') },
+                    { type: 'action', label: 'Text Messages', href: buildUrl('text-messages') },
+                    { type: 'action', label: 'Application Translations', href: buildUrl('translate-application') },
+                ],
+            },
+            {
+                heading: 'Generative AI', icon: 'icon-sc-ai',
+                items: [
+                    { type: 'action', label: 'AI Attributes', href: buildUrl('edit-ai') },
+                    { type: 'action', label: 'AI Agents', href: buildUrl('gen-ai-agents') },
+                    { type: 'action', label: 'AI Services', href: buildUrl('generative-ai-services') },
+                ],
+            },
         ];
+    }
+
+    function buildMenuItems() {
+        const groups = buildMenuGroups();
+        const openItem = { type: 'action', label: 'Open Shared Components', href: buildUrl('shared-components'), icon: 'icon-shared-components' };
+
+        if (USE_SUBMENUS) {
+            return [
+                openItem,
+                { type: 'separator' },
+                ...groups.map(group => ({
+                    type: 'subMenu',
+                    label: group.heading,
+                    icon: group.icon,
+                    menu: { items: group.items },
+                })),
+            ];
+        }
+
+        const items = [openItem, { type: 'separator' }];
+        groups.forEach(group => {
+            items.push({ type: 'action', label: group.heading, icon: group.icon });
+            items.push(...group.items);
+            items.push({ type: 'separator' });
+        });
+        items.pop();
+        return items;
     }
 
     function ensureMenu($) {

@@ -1,8 +1,8 @@
 # Oracle APEX Shared Components Menu
 
-**Version:** 26.1.1  
+**Version:** 26.1.2  
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
-**Last Updated:** June 2026
+**Last Updated:** July 2026
 
 > **Experimental Use Only**  
 > This script is provided for experimental use only. Use at your own risk.  
@@ -16,7 +16,7 @@ In the APEX 26.1 builder, the Shared Components toolbar button navigates away fr
 
 **Features:**
 - Shared Components button opens a drop-down menu on click instead of navigating away.
-- Menu items cover all sections: User Interface, Navigation and Search, Security, Application Logic, Other Components, Files and Reports, Data Sources, Workflows and Automations, Globalization, and Generative AI.
+- By default, each section (User Interface, Navigation and Search, Security, Application Logic, Other Components, Files and Reports, Data Sources, Workflows and Automations, Globalization, Generative AI) appears as a heading with its own submenu. Set `USE_SUBMENUS = false` near the top of the script to restore the original flat list with disabled heading rows instead.
 - An "Open Shared Components" entry at the top of the menu preserves access to the full Shared Components page.
 - URLs inject the current builder session automatically, so links work without re-authenticating.
 - App-scoped pages (Security Attributes, Globalization Attributes) include `fb_flow_id` when the edited application ID can be determined from the page context.

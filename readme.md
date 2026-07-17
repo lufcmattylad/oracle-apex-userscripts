@@ -31,10 +31,11 @@ This repository contains the following userscripts for Oracle APEX:
 | [Toggle Comment Out](scripts/oracle-apex-toggle-comment-out/readme.md) | 26.1.1 | Adds a keyboard shortcut to toggle the "Comment Out" build option for selected components in the Page Designer. Compatible with APEX 24.2 and 26.1+. |
 | [Page Designer Undo/Redo Counters](scripts/oracle-apex-page-designer-undo-redo-counters/readme.md) | 26.1.1 | Shows live undo and redo counts next to Page Designer toolbar buttons using native badge styling. |
 | [No Border Attributes](scripts/oracle-apex-no-border-attributes/readme.md) | 26.1.2 | Removes the visible borders added to property editor fields in APEX 26.1, restoring the subtle appearance from 24.2. Requires APEX 26.1+. |
-| [Top Level Navigation](scripts/oracle-apex-top-level-navigation/readme.md) | 26.1.1 | Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page. Requires APEX 26.1+. |
+| [Top Level Navigation](scripts/oracle-apex-top-level-navigation/readme.md) | 26.1.4 | Relocates the left-side black navigation menu in the APEX 26.1 builder to a slim horizontal bar across the top of the page. Requires APEX 26.1+. |
 | [Builder Click Menus](scripts/oracle-apex-builder-click-menus/readme.md) | 26.1.1 | Converts the hover menus on App Builder and SQL Workshop in the APEX 26.1 builder navigation into click-to-open menus, with the original links kept as the first menu item. Requires APEX 26.1+. |
 | [Object Browser in Page Designer](scripts/oracle-apex-obj-browser-in-pd/readme.md) | 26.1.1 | Adds an "Object Browser" tab to the right of the Layout tab in the APEX 26.1 Page Designer, so you can browse schema objects without leaving the page you are editing. Requires APEX 26.1+. |
-| [Shared Components Menu](scripts/oracle-apex-shared-components-menu/readme.md) | 26.1.1 | Converts the Shared Components toolbar button into a drop-down menu with direct links to every Shared Components section, available from anywhere in the builder. Requires APEX 26.1+. |
+| [Shared Components Menu](scripts/oracle-apex-shared-components-menu/readme.md) | 26.1.2 | Converts the Shared Components toolbar button into a drop-down menu with headings and submenus (or a flat list, configurable) linking to every Shared Components section, available from anywhere in the builder. Requires APEX 26.1+. |
+| [Pets](scripts/oracle-apex-pets/readme.md) | 26.1.1 | Adds roaming vscode-pets animals to the top navigation bar: 21 pet types, click-to-swipe, and a Throw Ball chase game, configured from an Account menu submenu. Requires the Top Level Navigation userscript and APEX 26.1+. |
 
 ---
 
@@ -72,6 +73,9 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### Shared Components Menu
 ![Preview](scripts/oracle-apex-shared-components-menu/img/preview.gif)
+
+### Pets
+![Preview](scripts/oracle-apex-pets/img/preview.gif)
 
 ---
 
@@ -119,7 +123,11 @@ This repository contains the following userscripts for Oracle APEX:
 
 ### 11. Shared Components Menu
 - **Location:** [`scripts/oracle-apex-shared-components-menu/readme.md`](scripts/oracle-apex-shared-components-menu/readme.md)
-- **Description:** Converts the Shared Components toolbar button in the APEX 26.1 builder into a drop-down menu with direct links to every Shared Components section (Application Logic, Security, Other Components, Navigation and Search, User Interface, Files and Reports, Data Sources, Workflows and Automations, Globalization, Generative AI). Works from Page Designer, the page listing, and all other builder pages. Requires APEX 26.1+.
+- **Description:** Converts the Shared Components toolbar button in the APEX 26.1 builder into a drop-down menu with headings and submenus for every Shared Components section (Application Logic, Security, Other Components, Navigation and Search, User Interface, Files and Reports, Data Sources, Workflows and Automations, Globalization, Generative AI); a `USE_SUBMENUS` flag in the script switches back to a single flat list. Works from Page Designer, the page listing, and all other builder pages. Requires APEX 26.1+.
+
+### 12. Pets
+- **Location:** [`scripts/oracle-apex-pets/readme.md`](scripts/oracle-apex-pets/readme.md)
+- **Description:** Adds roaming pets from the [vscode-pets](https://github.com/tonybaloney/vscode-pets) project to the APEX builder's top navigation bar. 21 animals with authentic movement speeds, click-to-swipe interaction, and a Throw Ball chase game. Pet quantities (0-10 of each) are configured from a Pets submenu in the Account menu and persist in localStorage. Requires the Top Level Navigation userscript and APEX 26.1+.
 
 ---
 

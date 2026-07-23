@@ -2,7 +2,7 @@
 // @name         Oracle APEX Pets
 // @run-at       document-start
 // @namespace    https://github.com/lufcmattylad
-// @version      26.1.1
+// @version      26.1.2
 // @description  Adds roaming pets to the Oracle APEX top navigation bar (requires oracle-apex-top-level-navigation userscript)
 // @author       Matt Mulvaney - @Matt_Mulvaney
 // @match        *://*/ords/*
@@ -314,6 +314,16 @@
         return header.getBoundingClientRect().bottom;
     }
 
+    /* Pets and the ball walk/bounce along the header's own width, not the
+       full window - the Centered Layout userscript (and any theme that
+       centers the nav bar) can leave the header narrower than the viewport */
+    function getHeaderBounds() {
+        const header = document.querySelector(PET_CONFIG.headerSelector);
+        if (!header) return { left: 0, right: window.innerWidth };
+        const rect = header.getBoundingClientRect();
+        return { left: rect.left, right: rect.right };
+    }
+
     /* Bouncing ball, ported from vscode-pets ball.ts */
     class Ball {
         constructor() {
@@ -337,8 +347,8 @@
         }
 
         throw() {
-            const width = window.innerWidth;
-            this.cx = 40 + Math.random() * (width * 0.4);
+            const { left, right } = getHeaderBounds();
+            this.cx = left + 40 + Math.random() * ((right - left) * 0.4);
             this.cy = Math.max(getFloorY() - 120, 10);
             this.vx = (2 + Math.random() * 4) * (Math.random() > 0.5 ? 1 : -1);
             this.vy = 5;
@@ -366,15 +376,15 @@
             }
 
             const r = BALL_CONFIG.radius;
-            const width = window.innerWidth;
+            const { left, right } = getHeaderBounds();
             const floorY = getFloorY();
 
-            if (this.cx + r >= width) {
+            if (this.cx + r >= right) {
                 this.vx = -this.vx * BALL_CONFIG.damping;
-                this.cx = width - r;
-            } else if (this.cx - r <= 0) {
+                this.cx = right - r;
+            } else if (this.cx - r <= left) {
                 this.vx = -this.vx * BALL_CONFIG.damping;
-                this.cx = r;
+                this.cx = left + r;
             }
             if (this.cy + r >= floorY) {
                 this.vy = -this.vy * BALL_CONFIG.damping;
@@ -432,7 +442,8 @@
             });
             this.el.appendChild(this.img);
 
-            this.left = Math.random() * (window.innerWidth - PET_CONFIG.size);
+            const spawnBounds = getHeaderBounds();
+            this.left = spawnBounds.left + Math.random() * (spawnBounds.right - spawnBounds.left - PET_CONFIG.size);
             this.state = null;
             this.stateTicks = 0;
             this.idleHold = this.randomIdleHold();
@@ -547,8 +558,9 @@
 
                 case States.WALK_RIGHT:
                 case States.WALK_LEFT: {
-                    const maxLeft = window.innerWidth - PET_CONFIG.size - 20;
-                    const minLeft = 20;
+                    const walkBounds = getHeaderBounds();
+                    const maxLeft = walkBounds.right - PET_CONFIG.size - 20;
+                    const minLeft = walkBounds.left + 20;
 
                     this.left += this.direction * this.speed;
 

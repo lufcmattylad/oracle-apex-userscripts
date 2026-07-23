@@ -1,6 +1,6 @@
 # Oracle APEX Pets
 
-**Version:** 26.1.1  
+**Version:** 26.1.2  
 **Author:** Matt Mulvaney (@Matt_Mulvaney)  
 **Last Updated:** July 2026
 
@@ -22,6 +22,7 @@ This userscript adds cute roaming pets to the Oracle APEX top navigation bar. Yo
 - Configure how many of each animal (0-10) via **Account menu → Pets → Settings**
 - Preferences persist in localStorage
 - GIFs preloaded to avoid loading flashes; subtle glow so sprites read against the dark bar
+- Pets and the ball stay within the header's own width, so they don't wander into the margins if the nav bar is narrower than the window (e.g. with the Centered Layout userscript)
 
 **Dependencies:**
 - **Requires:** `oracle-apex-top-level-navigation` userscript (pets roam along the top navigation bar)
